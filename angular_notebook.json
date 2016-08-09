@@ -1,8 +1,8 @@
 {
   "paragraphs": [
     {
-      "text": "z.angularBind(\"name\", \"World\")",
-      "dateUpdated": "Aug 8, 2016 6:07:28 PM",
+      "text": "z.angularBind(\"name\", \"Qubole World\")",
+      "dateUpdated": "Aug 9, 2016 1:28:19 AM",
       "config": {
         "enabled": true,
         "graph": {
@@ -29,8 +29,8 @@
         "msg": ""
       },
       "dateCreated": "Aug 5, 2016 4:46:02 PM",
-      "dateStarted": "Aug 8, 2016 6:07:28 PM",
-      "dateFinished": "Aug 8, 2016 6:07:30 PM",
+      "dateStarted": "Aug 9, 2016 1:28:19 AM",
+      "dateFinished": "Aug 9, 2016 1:29:08 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -447,7 +447,7 @@
       },
       {
         "name": "name",
-        "object": "World",
+        "object": "Qubole World",
         "noteId": "2BSXGB3XK165901470415562934"
       }
     ]
