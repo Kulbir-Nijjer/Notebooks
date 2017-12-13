@@ -1,0 +1,505 @@
+{
+  "paragraphs": [
+    {
+      "title": "Initialize",
+      "text": "%sql\nuse quboledb",
+      "user": "kulbir@qubole.com",
+      "dateUpdated": "Dec 13, 2017 7:28:03 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/sql",
+        "tableHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1501586499492_1375798545",
+      "id": "20170718-091725_1129073395_q_A59A5WTPYH1513150063",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "dateCreated": "Aug 1, 2017 11:21:39 AM",
+      "dateStarted": "Dec 13, 2017 7:28:03 AM",
+      "dateFinished": "Dec 13, 2017 7:28:04 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Total orders by date",
+      "text": "%sql\nSELECT date_format(order_date,\u0027YYYY/MM/dd\u0027) AS day, COUNT(*) AS Total_Orders \nFROM orders\nGROUP BY date_format(order_date,\u0027YYYY/MM/dd\u0027)\nORDER BY day",
+      "user": "kulbir@qubole.com",
+      "dateUpdated": "Dec 13, 2017 7:34:11 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "multiBarChart",
+          "height": 294.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "day",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "Total_Orders",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "day",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "Total_Orders",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/sql",
+        "tableHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "JOB UI",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "https://api.qubole.com/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2Fec2-52-25-39-49.us-west-2.compute.amazonaws.com%3A8088%2Fproxy%2Fapplication_1513148827804_0001/jobs/job?spark\u003dtrue\u0026id\u003d9"
+          ],
+          "interpreterSettingId": "2D2GHEBEQ439471513148861977"
+        }
+      },
+      "jobName": "paragraph_1500471880084_-1506130997",
+      "id": "20170718-093523_1461500309_q_A59A5WTPYH1513150063",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "day\tTotal_Orders\n2013/07/25\t113\n2013/07/26\t229\n2013/07/27\t162\n2013/07/28\t151\n2013/07/29\t212\n2013/07/30\t184\n2013/07/31\t219\n2013/08/01\t202\n2013/08/02\t183\n2013/08/03\t152\n2013/08/04\t165\n2013/08/05\t131\n2013/08/06\t219\n2013/08/07\t161\n2013/08/08\t126\n2013/08/09\t96\n2013/08/10\t228\n2013/08/11\t129\n2013/08/12\t222\n2013/08/13\t57\n2013/08/14\t166\n2013/08/15\t165\n2013/08/16\t114\n2013/08/17\t215\n2013/08/18\t166\n2013/08/19\t74\n2013/08/20\t142\n2013/08/21\t101\n2013/08/22\t157\n2013/08/23\t176\n2013/08/24\t211\n2013/08/25\t161\n2013/08/26\t153\n2013/08/27\t160\n2013/08/28\t92\n2013/08/29\t182\n2013/08/30\t97\n2013/08/31\t124\n2013/09/01\t89\n2013/09/02\t173\n2013/09/03\t178\n2013/09/04\t79\n2013/09/05\t218\n2013/09/06\t234\n2013/09/07\t172\n2013/09/08\t137\n2013/09/09\t206\n2013/09/10\t195\n2013/09/11\t93\n2013/09/12\t151\n2013/09/13\t89\n2013/09/14\t232\n2013/09/15\t124\n2013/09/16\t95\n2013/09/17\t108\n2013/09/18\t213\n2013/09/19\t169\n2013/09/20\t126\n2013/09/21\t130\n2013/09/22\t157\n2013/09/23\t140\n2013/09/24\t213\n2013/09/25\t227\n2013/09/26\t216\n2013/09/27\t222\n2013/09/28\t181\n2013/09/29\t114\n2013/09/30\t202\n2013/10/01\t94\n2013/10/02\t196\n2013/10/03\t132\n2013/10/04\t241\n2013/10/05\t177\n2013/10/06\t204\n2013/10/07\t90\n2013/10/08\t202\n2013/10/09\t98\n2013/10/10\t122\n2013/10/11\t182\n2013/10/12\t133\n2013/10/13\t240\n2013/10/14\t119\n2013/10/15\t146\n2013/10/16\t105\n2013/10/17\t136\n2013/10/18\t106\n2013/10/19\t156\n2013/10/20\t134\n2013/10/21\t94\n2013/10/22\t114\n2013/10/23\t187\n2013/10/24\t117\n2013/10/25\t134\n2013/10/26\t96\n2013/10/27\t188\n2013/10/28\t132\n2013/10/29\t109\n2013/10/30\t112\n2013/10/31\t180\n2013/11/01\t190\n2013/11/02\t125\n2013/11/03\t284\n2013/11/04\t207\n2013/11/05\t236\n2013/11/06\t195\n2013/11/07\t204\n2013/11/08\t147\n2013/11/09\t205\n2013/11/10\t145\n2013/11/11\t209\n2013/11/12\t151\n2013/11/13\t200\n2013/11/14\t242\n2013/11/15\t109\n2013/11/16\t103\n2013/11/17\t123\n2013/11/18\t153\n2013/11/19\t159\n2013/11/20\t193\n2013/11/21\t117\n2013/11/22\t210\n2013/11/23\t215\n2013/11/24\t241\n2013/11/25\t106\n2013/11/26\t105\n2013/11/27\t140\n2013/11/28\t203\n2013/11/29\t214\n2013/11/30\t218\n2013/12/01\t199\n2013/12/02\t81\n2013/12/03\t191\n2013/12/04\t148\n2013/12/05\t209\n2013/12/06\t215\n2013/12/07\t190\n2013/12/08\t112\n2013/12/09\t121\n2013/12/10\t136\n2013/12/11\t220\n2013/12/12\t128\n2013/12/13\t115\n2013/12/14\t84\n2013/12/15\t191\n2013/12/16\t96\n2013/12/17\t108\n2013/12/18\t192\n2013/12/19\t100\n2013/12/20\t214\n2013/12/21\t179\n2013/12/22\t205\n2013/12/23\t126\n2013/12/24\t147\n2013/12/25\t174\n2013/12/26\t241\n2013/12/27\t135\n2013/12/28\t182\n2014/01/01\t109\n2014/01/02\t93\n2014/01/03\t215\n2014/01/04\t105\n2014/01/05\t217\n2014/01/06\t133\n2014/01/07\t129\n2014/01/08\t109\n2014/01/09\t167\n2014/01/10\t204\n2014/01/11\t230\n2014/01/12\t175\n2014/01/13\t156\n2014/01/14\t173\n2014/01/15\t205\n2014/01/16\t166\n2014/01/17\t118\n2014/01/18\t117\n2014/01/19\t187\n2014/01/20\t177\n2014/01/21\t210\n2014/01/22\t180\n2014/01/23\t188\n2014/01/24\t132\n2014/01/25\t86\n2014/01/26\t121\n2014/01/27\t136\n2014/01/28\t159\n2014/01/29\t130\n2014/01/30\t211\n2014/01/31\t177\n2014/02/01\t226\n2014/02/02\t149\n2014/02/03\t160\n2014/02/04\t126\n2014/02/05\t120\n2014/02/06\t175\n2014/02/07\t189\n2014/02/08\t139\n2014/02/09\t195\n2014/02/10\t190\n2014/02/11\t166\n2014/02/12\t173\n2014/02/13\t167\n2014/02/14\t154\n2014/02/15\t179\n2014/02/16\t221\n2014/02/17\t146\n2014/02/18\t184\n2014/02/19\t226\n2014/02/20\t124\n2014/02/21\t168\n2014/02/22\t104\n2014/02/23\t151\n2014/02/24\t147\n2014/02/25\t218\n2014/02/26\t119\n2014/02/27\t155\n2014/02/28\t197\n2014/03/01\t212\n2014/03/02\t95\n2014/03/03\t229\n2014/03/04\t210\n2014/03/05\t159\n2014/03/06\t178\n2014/03/07\t159\n2014/03/08\t80\n2014/03/10\t207\n2014/03/11\t169\n2014/03/12\t209\n2014/03/13\t136\n2014/03/14\t164\n2014/03/15\t200\n2014/03/16\t151\n2014/03/17\t78\n2014/03/18\t217\n2014/03/19\t111\n2014/03/20\t154\n2014/03/21\t160\n2014/03/22\t201\n2014/03/23\t175\n2014/03/24\t114\n2014/03/25\t100\n2014/03/26\t207\n2014/03/27\t131\n2014/03/28\t154\n2014/03/29\t78\n2014/03/30\t212\n2014/03/31\t213\n2014/04/01\t180\n2014/04/02\t224\n2014/04/03\t197\n2014/04/04\t189\n2014/04/05\t140\n2014/04/06\t89\n2014/04/07\t90\n2014/04/08\t182\n2014/04/09\t231\n2014/04/10\t210\n2014/04/11\t128\n2014/04/12\t197\n2014/04/13\t96\n2014/04/14\t93\n2014/04/15\t150\n2014/04/16\t116\n2014/04/17\t92\n2014/04/18\t188\n2014/04/19\t95\n2014/04/20\t158\n2014/04/21\t220\n2014/04/22\t120\n2014/04/23\t188\n2014/04/24\t104\n2014/04/25\t207\n2014/04/26\t209\n2014/04/27\t221\n2014/04/28\t107\n2014/04/29\t203\n2014/04/30\t108\n2014/05/01\t117\n2014/05/02\t167\n2014/05/03\t170\n2014/05/04\t142\n2014/05/05\t135\n2014/05/06\t227\n2014/05/07\t187\n2014/05/08\t85\n2014/05/09\t221\n2014/05/10\t166\n2014/05/11\t186\n2014/05/12\t204\n2014/05/13\t166\n2014/05/14\t140\n2014/05/15\t123\n2014/05/16\t232\n2014/05/17\t131\n2014/05/18\t154\n2014/05/19\t87\n2014/05/20\t181\n2014/05/21\t184\n2014/05/22\t85\n2014/05/23\t115\n2014/05/24\t177\n2014/05/25\t107\n2014/05/26\t126\n2014/05/27\t66\n2014/05/28\t193\n2014/05/29\t112\n2014/05/30\t84\n2014/05/31\t120\n2014/06/01\t146\n2014/06/02\t188\n2014/06/03\t109\n2014/06/04\t99\n2014/06/05\t122\n2014/06/06\t162\n2014/06/07\t163\n2014/06/08\t187\n2014/06/09\t232\n2014/06/10\t116\n2014/06/11\t109\n2014/06/12\t118\n2014/06/13\t220\n2014/06/14\t216\n2014/06/15\t117\n2014/06/16\t194\n2014/06/17\t119\n2014/06/18\t156\n2014/06/19\t221\n2014/06/20\t121\n2014/06/21\t76\n2014/06/22\t96\n2014/06/23\t118\n2014/06/24\t109\n2014/06/25\t213\n2014/06/26\t137\n2014/06/27\t214\n2014/06/28\t102\n2014/06/29\t106\n2014/06/30\t144\n2014/07/01\t155\n2014/07/02\t110\n2014/07/03\t140\n2014/07/04\t131\n2014/07/05\t201\n2014/07/06\t87\n2014/07/07\t144\n2014/07/08\t212\n2014/07/09\t124\n2014/07/10\t152\n2014/07/11\t117\n2014/07/12\t145\n2014/07/13\t175\n2014/07/14\t133\n2014/07/15\t230\n2014/07/16\t120\n2014/07/17\t136\n2014/07/18\t191\n2014/07/19\t179\n2014/07/20\t238\n2014/07/21\t197\n2014/07/22\t116\n2014/07/23\t142\n2014/07/24\t159\n2014/12/29\t95\n2014/12/30\t150\n2014/12/31\t222\n"
+      },
+      "dateCreated": "Aug 1, 2017 11:21:39 AM",
+      "dateStarted": "Dec 13, 2017 7:28:08 AM",
+      "dateFinished": "Dec 13, 2017 7:28:17 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Total orders by month range and year",
+      "text": "%sql\nSELECT to_date(order_date) AS Order_Date, COUNT(*) AS Total_Orders \nFROM orders\nWHERE month(order_date) BETWEEN \n    ${Month1\u003d1,1(Jan)|2(Feb)|3(Mar)|4(Apr)|5(May)|6(Jun)|7(Jul)|8(Aug)|9(Sep)|10(Oct)|11(Nov)|12(Dec)} AND \n    ${Month2\u003d2,1(Jan)|2(Feb)|3(Mar)|4(Apr)|5(May)|6(Jun)|7(Jul)|8(Aug)|9(Sep)|10(Oct)|11(Nov)|12(Dec)} AND \n    year(order_date) \u003d ${Year\u003d2014,2013|2014}\nGROUP BY to_date(order_date) \nORDER BY Order_Date",
+      "user": "kulbir@qubole.com",
+      "dateUpdated": "Dec 13, 2017 7:36:26 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "multiBarChart",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "Order_Date",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "Total_Orders",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "Order_Date",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "Total_Orders",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/sql",
+        "tableHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {
+          "Month1": "1",
+          "Year": "2013",
+          "Month2": "9"
+        },
+        "forms": {
+          "Month1": {
+            "name": "Month1",
+            "defaultValue": "1",
+            "options": [
+              {
+                "value": "1",
+                "displayName": "Jan"
+              },
+              {
+                "value": "2",
+                "displayName": "Feb"
+              },
+              {
+                "value": "3",
+                "displayName": "Mar"
+              },
+              {
+                "value": "4",
+                "displayName": "Apr"
+              },
+              {
+                "value": "5",
+                "displayName": "May"
+              },
+              {
+                "value": "6",
+                "displayName": "Jun"
+              },
+              {
+                "value": "7",
+                "displayName": "Jul"
+              },
+              {
+                "value": "8",
+                "displayName": "Aug"
+              },
+              {
+                "value": "9",
+                "displayName": "Sep"
+              },
+              {
+                "value": "10",
+                "displayName": "Oct"
+              },
+              {
+                "value": "11",
+                "displayName": "Nov"
+              },
+              {
+                "value": "12",
+                "displayName": "Dec"
+              }
+            ],
+            "hidden": false
+          },
+          "Year": {
+            "name": "Year",
+            "defaultValue": "2014",
+            "options": [
+              {
+                "value": "2013"
+              },
+              {
+                "value": "2014"
+              }
+            ],
+            "hidden": false
+          },
+          "Month2": {
+            "name": "Month2",
+            "defaultValue": "2",
+            "options": [
+              {
+                "value": "1",
+                "displayName": "Jan"
+              },
+              {
+                "value": "2",
+                "displayName": "Feb"
+              },
+              {
+                "value": "3",
+                "displayName": "Mar"
+              },
+              {
+                "value": "4",
+                "displayName": "Apr"
+              },
+              {
+                "value": "5",
+                "displayName": "May"
+              },
+              {
+                "value": "6",
+                "displayName": "Jun"
+              },
+              {
+                "value": "7",
+                "displayName": "Jul"
+              },
+              {
+                "value": "8",
+                "displayName": "Aug"
+              },
+              {
+                "value": "9",
+                "displayName": "Sep"
+              },
+              {
+                "value": "10",
+                "displayName": "Oct"
+              },
+              {
+                "value": "11",
+                "displayName": "Nov"
+              },
+              {
+                "value": "12",
+                "displayName": "Dec"
+              }
+            ],
+            "hidden": false
+          }
+        }
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "JOB UI",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "https://api.qubole.com/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2Fec2-52-25-39-49.us-west-2.compute.amazonaws.com%3A8088%2Fproxy%2Fapplication_1513148827804_0001/jobs/job?spark\u003dtrue\u0026id\u003d22"
+          ],
+          "interpreterSettingId": "2D2GHEBEQ439471513148861977"
+        }
+      },
+      "jobName": "paragraph_1501586499493_1375413796",
+      "id": "20170718-100744_1285686313_q_A59A5WTPYH1513150063",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "Order_Date\tTotal_Orders\n2013-07-25\t113\n2013-07-26\t229\n2013-07-27\t162\n2013-07-28\t151\n2013-07-29\t212\n2013-07-30\t184\n2013-07-31\t219\n2013-08-01\t202\n2013-08-02\t183\n2013-08-03\t152\n2013-08-04\t165\n2013-08-05\t131\n2013-08-06\t219\n2013-08-07\t161\n2013-08-08\t126\n2013-08-09\t96\n2013-08-10\t228\n2013-08-11\t129\n2013-08-12\t222\n2013-08-13\t57\n2013-08-14\t166\n2013-08-15\t165\n2013-08-16\t114\n2013-08-17\t215\n2013-08-18\t166\n2013-08-19\t74\n2013-08-20\t142\n2013-08-21\t101\n2013-08-22\t157\n2013-08-23\t176\n2013-08-24\t211\n2013-08-25\t161\n2013-08-26\t153\n2013-08-27\t160\n2013-08-28\t92\n2013-08-29\t182\n2013-08-30\t97\n2013-08-31\t124\n2013-09-01\t89\n2013-09-02\t173\n2013-09-03\t178\n2013-09-04\t79\n2013-09-05\t218\n2013-09-06\t234\n2013-09-07\t172\n2013-09-08\t137\n2013-09-09\t206\n2013-09-10\t195\n2013-09-11\t93\n2013-09-12\t151\n2013-09-13\t89\n2013-09-14\t232\n2013-09-15\t124\n2013-09-16\t95\n2013-09-17\t108\n2013-09-18\t213\n2013-09-19\t169\n2013-09-20\t126\n2013-09-21\t130\n2013-09-22\t157\n2013-09-23\t140\n2013-09-24\t213\n2013-09-25\t227\n2013-09-26\t216\n2013-09-27\t222\n2013-09-28\t181\n2013-09-29\t114\n2013-09-30\t202\n"
+      },
+      "dateCreated": "Aug 1, 2017 11:21:39 AM",
+      "dateStarted": "Dec 13, 2017 7:36:26 AM",
+      "dateFinished": "Dec 13, 2017 7:36:39 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Top 5 products with total transactions per order status",
+      "text": "%sql\nSELECT * FROM (\n  SELECT product_name as `Product Name`, \u0027Complete\u0027 AS `Order Status`, count(*) AS `Total Transactions`\n  FROM order_items oi\n  JOIN products p ON (order_item_product_id \u003d product_id)\n  JOIN orders o ON (order_item_order_id \u003d order_id)\n  WHERE order_status \u003d \u0027COMPLETE\u0027\n  GROUP BY order_status, product_name\n  ORDER BY `Total Transactions` DESC\n  LIMIT 5\n) q1\nUNION\nSELECT * FROM (\n  SELECT product_name AS name, \u0027Suspected Fraud\u0027 AS status, count(*) AS `Total Transactions`\n  FROM order_items oi\n  JOIN products p ON (order_item_product_id \u003d product_id)\n  JOIN orders o ON (order_item_order_id \u003d order_id)\n  WHERE order_status \u003d \u0027SUSPECTED_FRAUD\u0027\n  GROUP BY order_status, product_name\n  ORDER BY `Total Transactions` DESC\n  LIMIT 5\n) q2\nUNION\nSELECT * FROM (\n  SELECT product_name AS name, \u0027Pending Payment\u0027 AS status, count(*) AS `Total Transactions`\n  FROM order_items oi\n  JOIN products p ON (order_item_product_id \u003d product_id)\n  JOIN orders o ON (order_item_order_id \u003d order_id)\n  WHERE order_status \u003d \u0027PENDING_PAYMENT\u0027\n  GROUP BY order_status, product_name\n  ORDER BY `Total Transactions` DESC\n  LIMIT 5\n) q3\nUNION\nSELECT * FROM (\n  SELECT product_name AS name, \u0027Canceled\u0027 AS status, count(*) AS `Total Transactions`\n  FROM order_items oi\n  JOIN products p ON (order_item_product_id \u003d product_id)\n  JOIN orders o ON (order_item_order_id \u003d order_id)\n  WHERE order_status \u003d \u0027CANCELED\u0027\n  GROUP BY order_status, product_name\n  ORDER BY `Total Transactions` DESC\n  LIMIT 5\n) q4\nORDER BY `Product Name`,`Order Status`\n\n",
+      "user": "kulbir@qubole.com",
+      "dateUpdated": "Dec 13, 2017 7:38:37 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "multiBarChart",
+          "height": 300.0,
+          "optionOpen": true,
+          "keys": [
+            {
+              "name": "Product Name",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "Total Transactions",
+              "index": 2.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [
+            {
+              "name": "Order Status",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "scatter": {
+            "xAxis": {
+              "name": "Product Name",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "Order Status",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/sql",
+        "tableHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "JOB UI",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "https://api.qubole.com/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2Fec2-52-25-39-49.us-west-2.compute.amazonaws.com%3A8088%2Fproxy%2Fapplication_1513148827804_0001/jobs/job?spark\u003dtrue\u0026id\u003d15",
+            "https://api.qubole.com/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2Fec2-52-25-39-49.us-west-2.compute.amazonaws.com%3A8088%2Fproxy%2Fapplication_1513148827804_0001/jobs/job?spark\u003dtrue\u0026id\u003d16",
+            "https://api.qubole.com/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2Fec2-52-25-39-49.us-west-2.compute.amazonaws.com%3A8088%2Fproxy%2Fapplication_1513148827804_0001/jobs/job?spark\u003dtrue\u0026id\u003d17",
+            "https://api.qubole.com/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2Fec2-52-25-39-49.us-west-2.compute.amazonaws.com%3A8088%2Fproxy%2Fapplication_1513148827804_0001/jobs/job?spark\u003dtrue\u0026id\u003d18",
+            "https://api.qubole.com/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2Fec2-52-25-39-49.us-west-2.compute.amazonaws.com%3A8088%2Fproxy%2Fapplication_1513148827804_0001/jobs/job?spark\u003dtrue\u0026id\u003d19",
+            "https://api.qubole.com/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2Fec2-52-25-39-49.us-west-2.compute.amazonaws.com%3A8088%2Fproxy%2Fapplication_1513148827804_0001/jobs/job?spark\u003dtrue\u0026id\u003d20"
+          ],
+          "interpreterSettingId": "2D2GHEBEQ439471513148861977"
+        }
+      },
+      "jobName": "paragraph_1501586499493_1375413796",
+      "id": "20170801-112139_2068635312_q_A59A5WTPYH1513150063",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "Product Name\tOrder Status\tTotal Transactions\nField \u0026 Stream Sportsman 16 Gun Fire Safe\tCanceled\t290\nField \u0026 Stream Sportsman 16 Gun Fire Safe\tComplete\t4638\nField \u0026 Stream Sportsman 16 Gun Fire Safe\tPending Payment\t3216\nField \u0026 Stream Sportsman 16 Gun Fire Safe\tSuspected Fraud\t316\nNike Men\u0027s CJ Elite 2 TD Football Cleat\tCanceled\t415\nNike Men\u0027s CJ Elite 2 TD Football Cleat\tComplete\t6088\nNike Men\u0027s CJ Elite 2 TD Football Cleat\tPending Payment\t4091\nNike Men\u0027s CJ Elite 2 TD Football Cleat\tSuspected Fraud\t401\nNike Men\u0027s Dri-FIT Victory Golf Polo\tCanceled\t371\nNike Men\u0027s Dri-FIT Victory Golf Polo\tComplete\t5788\nNike Men\u0027s Dri-FIT Victory Golf Polo\tPending Payment\t3830\nNike Men\u0027s Dri-FIT Victory Golf Polo\tSuspected Fraud\t400\nO\u0027Brien Men\u0027s Neoprene Life Vest\tCanceled\t333\nO\u0027Brien Men\u0027s Neoprene Life Vest\tComplete\t5338\nO\u0027Brien Men\u0027s Neoprene Life Vest\tPending Payment\t3542\nO\u0027Brien Men\u0027s Neoprene Life Vest\tSuspected Fraud\t370\nPerfect Fitness Perfect Rip Deck\tCanceled\t404\nPerfect Fitness Perfect Rip Deck\tComplete\t6728\nPerfect Fitness Perfect Rip Deck\tPending Payment\t4467\nPerfect Fitness Perfect Rip Deck\tSuspected Fraud\t464\n"
+      },
+      "dateCreated": "Aug 1, 2017 11:21:39 AM",
+      "dateStarted": "Dec 13, 2017 7:32:25 AM",
+      "dateFinished": "Dec 13, 2017 7:33:12 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Top 10 most viewed products vs revenue",
+      "text": "%sql\nSELECT product AS `Product`, substring(product,0,15) AS `Product Name`, count(*)/1000 AS `Total Page Views (in Thousands)`, round(COALESCE(r.revenue, 0)/1000000,2) AS `Total Revenue (in Millions)`\nFROM (SELECT url,\n   regexp_replace(substring_index(substring(url, instr(url, \u0027/category/\u0027) + 10), \u0027/product/\u0027,1),\u0027%20\u0027, \u0027 \u0027) AS category,\n   regexp_replace(substring(url, instr(url, \u0027/product/\u0027) + 9), \u0027%20\u0027, \u0027 \u0027) AS product\nFROM web_logs\nWHERE url like \u0027%\\/product\\/%\u0027) s\nLEFT JOIN\n    (SELECT p.product_name, cast(round(sum(oi.order_item_subtotal)) AS Int) AS revenue\n     FROM order_items oi\n     JOIN orders o ON oi.order_item_order_id \u003d o.order_id\n     JOIN products p ON p.product_id \u003d oi.order_item_product_id\n     WHERE o.order_status \u003c\u003e \u0027CANCELED\u0027\n     AND o.order_status \u003c\u003e \u0027SUSPECTED_FRAUD\u0027\n     GROUP BY p.product_name) r ON r.product_name \u003d product\nGROUP BY product, r.revenue\nORDER BY \u0027Total Revenue (in Millions)\u0027, `Total Page Views (in Thousands)` DESC\nLIMIT 10",
+      "user": "kulbir@qubole.com",
+      "dateUpdated": "Dec 13, 2017 7:40:21 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "multiBarChart",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "Product Name",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "Total Page Views (in Thousands)",
+              "index": 2.0,
+              "aggr": "sum"
+            },
+            {
+              "name": "Total Revenue (in Millions)",
+              "index": 3.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "Product",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "Product Name",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "tableHide": false,
+        "editorMode": "ace/mode/sql",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "JOB UI",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "https://api.qubole.com/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2Fec2-52-25-39-49.us-west-2.compute.amazonaws.com%3A8088%2Fproxy%2Fapplication_1513148827804_0001/jobs/job?spark\u003dtrue\u0026id\u003d23",
+            "https://api.qubole.com/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2Fec2-52-25-39-49.us-west-2.compute.amazonaws.com%3A8088%2Fproxy%2Fapplication_1513148827804_0001/jobs/job?spark\u003dtrue\u0026id\u003d24",
+            "https://api.qubole.com/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2Fec2-52-25-39-49.us-west-2.compute.amazonaws.com%3A8088%2Fproxy%2Fapplication_1513148827804_0001/jobs/job?spark\u003dtrue\u0026id\u003d25"
+          ],
+          "interpreterSettingId": "2D2GHEBEQ439471513148861977"
+        }
+      },
+      "jobName": "paragraph_1500471880085_-1506515746",
+      "id": "20170718-112243_1707896438_q_A59A5WTPYH1513150063",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "Product\tProduct Name\tTotal Page Views (in Thousands)\tTotal Revenue (in Millions)\nPerfect Fitness Perfect Rip Deck\tPerfect Fitness\t1.926\t3.54\nadidas Kids\u0027 RG III Mid Football Cleat\tadidas Kids\u0027 RG\t1.793\t0.0\nNike Men\u0027s Dri-FIT Victory Golf Polo\tNike Men\u0027s Dri-\t1.78\t2.5\nNike Men\u0027s CJ Elite 2 TD Football Cleat\tNike Men\u0027s CJ E\t1.757\t2.31\nPelican Sunstream 100 Kayak\tPelican Sunstre\t1.104\t2.47\nO\u0027Brien Men\u0027s Neoprene Life Vest\tO\u0027Brien Men\u0027s N\t1.084\t2.31\nDiamondback Women\u0027s Serene Classic Comfort Bi\tDiamondback Wom\t1.059\t3.3\nField \u0026 Stream Sportsman 16 Gun Fire Safe\tField \u0026 Stream \t1.028\t5.51\nNike Men\u0027s Free 5.0+ Running Shoe\tNike Men\u0027s Free\t1.004\t2.95\nUnder Armour Hustle Storm Medium Duffle Bag\tUnder Armour Hu\t0.939\t0.02\n"
+      },
+      "dateCreated": "Dec 13, 2017 7:27:50 AM",
+      "dateStarted": "Dec 13, 2017 7:39:39 AM",
+      "dateFinished": "Dec 13, 2017 7:40:16 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1501751437280_-690939769",
+      "id": "20170803-091037_2054103338_q_A59A5WTPYH1513150063",
+      "dateCreated": "Aug 3, 2017 9:10:37 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "dashboard_quickstart",
+  "id": "A59A5WTPYH1513150063",
+  "angularObjects": {
+    "2D47TZD7G439471513148861999:shared_process": [],
+    "2D2GHEBEQ439471513148861977:shared_process": [],
+    "2D4398KVD439471513148862006:shared_process": [],
+    "2D1C65WHZ439471513148861994:shared_process": []
+  },
+  "config": {
+    "isDashboard": false
+  },
+  "info": {},
+  "source": "FCN"
+}
