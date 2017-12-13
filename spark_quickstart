@@ -1,0 +1,202 @@
+{
+  "paragraphs": [
+    {
+      "title": "Initialize",
+      "text": "%sql\nuse quboledb",
+      "user": "kulbir@qubole.com",
+      "dateUpdated": "Dec 13, 2017 7:08:19 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "result",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "result",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/sql",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1500471880050_-1590006257",
+      "id": "20170717-144616_1172014752_q_16Q73KVH7F1513148488",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "dateCreated": "Dec 13, 2017 7:07:46 AM",
+      "dateStarted": "Dec 13, 2017 7:08:19 AM",
+      "dateFinished": "Dec 13, 2017 7:09:41 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Products purchased together",
+      "text": "val orderItemsByPName \u003d sqlContext.sql(\n    \"\"\"SELECT oi.order_item_order_id, collect_set(p.product_name) products \n       FROM order_items oi \n       JOIN products p ON (oi.order_item_product_id \u003d p.product_id ) \n       GROUP BY oi.order_item_order_id \n       ORDER BY oi.order_item_order_id\"\"\"\n)\n\nimport org.apache.spark.mllib.fpm.FPGrowth\nimport scala.collection.mutable._\n\n// ProductCombinations class that holds (string of) products and the associated frequency\nclass ProductCombinations (var products: String, var freq: Long) extends \n      Ordered [ProductCombinations] {\n\n    override def toString \u003d {\n        (products + \" bought ***\" + freq + \"*** time(s)\")\n    }\n    \n    // return 0 if the same; negative if this \u003c that; positive if this \u003e that\n    // used for sorting\n    def compare (that: ProductCombinations) \u003d {\n        if (this.freq \u003d\u003d that.freq) {\n            0\n        }\n        else if (this.freq \u003e that.freq) {\n            1\n        }\n        else {\n            -1\n        }\n    }\n}\n\nval orders \u003d orderItemsByPName.rdd.map(r \u003d\u003e {\n    r.getAs[WrappedArray[Int]](1).mkString(\",\").split(\",\")\n})\n\nval model \u003d new FPGrowth()\n  .setMinSupport(0)\n  .run(orders)\n  \nvar PCList \u003d List[ProductCombinations]()\n\nmodel.freqItemsets.collect().foreach {\n    itemset \u003d\u003e {\n      var pc \u003d new ProductCombinations(itemset.items.mkString(\",\"), itemset.freq)\n      PCList \u003d pc :: PCList\n    }\n}\n",
+      "user": "kulbir@qubole.com",
+      "dateUpdated": "Dec 13, 2017 7:10:29 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "JOB UI",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "https://api.qubole.com/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2Fec2-52-25-39-49.us-west-2.compute.amazonaws.com%3A8088%2Fproxy%2Fapplication_1513148827804_0001/jobs/job?spark\u003dtrue\u0026id\u003d0",
+            "https://api.qubole.com/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2Fec2-52-25-39-49.us-west-2.compute.amazonaws.com%3A8088%2Fproxy%2Fapplication_1513148827804_0001/jobs/job?spark\u003dtrue\u0026id\u003d1",
+            "https://api.qubole.com/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2Fec2-52-25-39-49.us-west-2.compute.amazonaws.com%3A8088%2Fproxy%2Fapplication_1513148827804_0001/jobs/job?spark\u003dtrue\u0026id\u003d2",
+            "https://api.qubole.com/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2Fec2-52-25-39-49.us-west-2.compute.amazonaws.com%3A8088%2Fproxy%2Fapplication_1513148827804_0001/jobs/job?spark\u003dtrue\u0026id\u003d3",
+            "https://api.qubole.com/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2Fec2-52-25-39-49.us-west-2.compute.amazonaws.com%3A8088%2Fproxy%2Fapplication_1513148827804_0001/jobs/job?spark\u003dtrue\u0026id\u003d4"
+          ],
+          "interpreterSettingId": "2D2GHEBEQ439471513148861977"
+        }
+      },
+      "jobName": "paragraph_1500471880050_-1590006257",
+      "id": "20170717-144855_1490557964_q_16Q73KVH7F1513148488",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "\norderItemsByPName: org.apache.spark.sql.DataFrame \u003d [order_item_order_id: int, products: array\u003cstring\u003e]\n\nimport org.apache.spark.mllib.fpm.FPGrowth\n\nimport scala.collection.mutable._\n\ndefined class ProductCombinations\n\norders: org.apache.spark.rdd.RDD[Array[String]] \u003d MapPartitionsRDD[23] at map at \u003cconsole\u003e:33\n\nmodel: org.apache.spark.mllib.fpm.FPGrowthModel[String] \u003d org.apache.spark.mllib.fpm.FPGrowthModel@6aea51be\n\nPCList: List[ProductCombinations] \u003d List()\n"
+      },
+      "dateCreated": "Dec 13, 2017 7:07:46 AM",
+      "dateStarted": "Dec 13, 2017 7:10:29 AM",
+      "dateFinished": "Dec 13, 2017 7:11:14 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Top 10 Two-product Combinations",
+      "text": "// Exclude entries with single products and display top 10 combinations of products bought together\nvar multipleProductCombos \u003d PCList.filter(p \u003d\u003e p.products.split(\",\").size \u003d\u003d 2)\n                                  .sortWith(_.freq \u003e _.freq).take(10)\n                                \nvar products \u003d multipleProductCombos.map { p \u003d\u003e\n    val splitted \u003d p.products.split(\",\")\n    (splitted(0), splitted(1), p.freq)\n}.toDF(\"Product1\", \"Product2\", \"Qty\")\n\nval aggregated \u003d products.groupBy(\"Product1\").agg(lit(\"\").alias(\"Product2\"), count(\"Product2\").alias(\"Count - Qty\"), sum(\"Qty\").alias(\"Sum - Qty\"))\nval productsRenamed \u003d products.select(products(\"Product1\"), products(\"Product2\"), lit(1).alias(\"Count - Qty\"), products(\"Qty\").alias(\"Sum - Qty\"))\nval merged \u003d  aggregated.unionAll(productsRenamed).sort(\"Product1\")\nvar result \u003d merged.select(expr(\"case when Product2 \u003d \u0027\u0027 then Product1 else \u0027\u0027 end\").alias(\"Product1\"), merged(\"Product2\"), merged(\"Count - Qty\"), merged(\"Sum - Qty\"))\nvar total \u003d aggregated.select(lit(\"Total Results\").alias(\"Product1\"), lit(\"\").alias(\"Product2\"), sum(\"Count - Qty\").alias(\"Count - Qty\"), sum(\"Sum - Qty\").alias(\"Sum - Qty\"))\nz.show(result.unionAll(total))",
+      "user": "kulbir@qubole.com",
+      "dateUpdated": "Dec 13, 2017 7:12:19 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "Product1",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "Product2",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "Product1",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "JOB UI",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "https://api.qubole.com/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2Fec2-52-25-39-49.us-west-2.compute.amazonaws.com%3A8088%2Fproxy%2Fapplication_1513148827804_0001/jobs/job?spark\u003dtrue\u0026id\u003d5",
+            "https://api.qubole.com/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2Fec2-52-25-39-49.us-west-2.compute.amazonaws.com%3A8088%2Fproxy%2Fapplication_1513148827804_0001/jobs/job?spark\u003dtrue\u0026id\u003d6",
+            "https://api.qubole.com/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2Fec2-52-25-39-49.us-west-2.compute.amazonaws.com%3A8088%2Fproxy%2Fapplication_1513148827804_0001/jobs/job?spark\u003dtrue\u0026id\u003d7",
+            "https://api.qubole.com/cluster-proxy?encodedUrl\u003dhttp%3A%2F%2Fec2-52-25-39-49.us-west-2.compute.amazonaws.com%3A8088%2Fproxy%2Fapplication_1513148827804_0001/jobs/job?spark\u003dtrue\u0026id\u003d8"
+          ],
+          "interpreterSettingId": "2D2GHEBEQ439471513148861977"
+        }
+      },
+      "jobName": "paragraph_1500471880051_-1590391006",
+      "id": "20170717-150404_823991455_q_16Q73KVH7F1513148488",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "Product1\tProduct2\tCount - Qty\tSum - Qty\nField \u0026 Stream Sportsman 16 Gun Fire Safe\t\t3\t11603\n\tPerfect Fitness Perfect Rip Deck\t1\t4082\n\tNike Men\u0027s CJ Elite 2 TD Football Cleat\t1\t3880\n\tNike Men\u0027s Dri-FIT Victory Golf Polo\t1\t3641\nNike Men\u0027s CJ Elite 2 TD Football Cleat\t\t1\t5163\n\tPerfect Fitness Perfect Rip Deck\t1\t5163\nNike Men\u0027s Dri-FIT Victory Golf Polo\t\t2\t9481\n\tPerfect Fitness Perfect Rip Deck\t1\t4953\n\tNike Men\u0027s CJ Elite 2 TD Football Cleat\t1\t4528\n\tNike Men\u0027s Dri-FIT Victory Golf Polo\t1\t3999\nO\u0027Brien Men\u0027s Neoprene Life Vest\t\t3\t12847\n\tPerfect Fitness Perfect Rip Deck\t1\t4656\n\tNike Men\u0027s CJ Elite 2 TD Football Cleat\t1\t4192\nPelican Sunstream 100 Kayak\t\t1\t3703\n\tPerfect Fitness Perfect Rip Deck\t1\t3703\nTotal Results\t\t10\t42797\n"
+      },
+      "dateCreated": "Dec 13, 2017 7:07:46 AM",
+      "dateStarted": "Dec 13, 2017 7:12:19 AM",
+      "dateFinished": "Dec 13, 2017 7:12:27 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1502446870677_979302860",
+      "id": "20170811-102110_479828366_q_16Q73KVH7F1513148488",
+      "dateCreated": "Aug 11, 2017 10:21:10 AM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "spark_quickstart",
+  "id": "16Q73KVH7F1513148488",
+  "angularObjects": {
+    "2D47TZD7G439471513148861999:shared_process": [],
+    "2D2GHEBEQ439471513148861977:shared_process": [],
+    "2D4398KVD439471513148862006:shared_process": [],
+    "2D1C65WHZ439471513148861994:shared_process": []
+  },
+  "config": {
+    "isDashboard": false
+  },
+  "info": {},
+  "source": "FCN"
+}
